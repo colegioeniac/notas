@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Nota Eniac</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;  
+            font-size: 16px;       
+            color: #333;
+            background: rgb(35, 75, 255);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto; /* Centralizando na vertical */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(255, 230, 0);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form button:hover {
+            background-color: rgb(255, 200, 0);
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Estilo para a tela inicial */
+        .intro-container {
+            max-width: 600px;
+            margin: 50px auto; /* Centralizando na vertical */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .intro-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .intro-container input {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-container button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background-color: rgb(255, 230, 0);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .intro-container button:hover {
+            background-color: rgb(255, 240, 100);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="intro-container">
+        <h2>Bem-vindo à Calculadora de Nota Eniac</h2>
+        <p>Por favor, insira seu nome completo para continuar:</p>
+        <input id="nomeCompleto" type="text" placeholder="Nome Completo" required>
+        <button id="submitNome" onclick="enviarNome()">Enviar</button>
+        <p>Feito por Françoso e Rezende</p>
+    </div>
+
+    <div class="container" style="display: none;">
+        <div class="form">
+            <h3>Prova Objetiva:</h3>
+            <input id="nota1" type="number" value='0'>
+            <h3>Nota de Professor:</h3>
+            <input id="nota2" type="number" value='0'>
+            <h3>Avaliação Dissertativa:</h3>
+            <input id="nota3" type="number" value='0'>
+            <h3>Simulado:</h3>
+            <input id="nota4" type="number" value='0'>
+    
+            <button id="submit" onclick="calcular()">Calcular</button>
+            <button id="redirect" onclick="redirectEniac()">Portal do Aluno</button>
+            <h2 id="resultado"></h2>
+        </div>
+    </div>
+
+    <script>
+        function redirectEniac() {
+            window.location.replace("https://lrk7vn-prd-portal.totvscloud.com.br:8081/web/app/edu/PortalEducacional/")
+        }
+
+        function enviarNome() {
+            let nome = document.getElementById("nomeCompleto").value;
+            if (nome.trim() === "") {
+                alert("Por favor, insira seu nome completo.");
+            } else {
+                document.querySelector(".intro-container").style.display = "none";
+                document.querySelector(".container").style.display = "block";
+            }
+        }
+
+        function calcular() {
+            let nome = document.getElementById("nomeCompleto").value;
+            let nota1 = Number(document.getElementById("nota1").value);
+            let nota2 = Number(document.getElementById("nota2").value);
+            let nota3 = Number(document.getElementById("nota3").value);
+            let nota4 = Number(document.getElementById("nota4").value);
+
+            if (nota1 > 10 || nota2 > 10 || nota3 > 10 || nota4 > 10 || nota1 < 0 || nota2 < 0 || nota3 < 0 || nota4 < 0) {
+                document.getElementById('resultado').style.backgroundColor = "orange";
+                return document.getElementById('resultado').textContent = '⚠ Você inseriu uma nota menor que 0 ou maior que 10.';
+            }
+    
+            let soma = ((nota1 * 0.30) + (nota2 * 0.20) + (nota3 * 0.25) + (nota4 * 0.25));
+            if (soma >= 6) {
+                document.getElementById('resultado').style.backgroundColor = "green";
+                document.getElementById('resultado').textContent = `✅ Parabéns você passou, sua nota é ${soma.toFixed(2)}.`;
+            } else {
+                document.getElementById('resultado').style.backgroundColor = "red";
+                document.getElementById('resultado').textContent = `❌ Infelizmente você não passou, sua nota é ${soma.toFixed(2)}.`;
+            }
+
+            // Envia para o webhook se o nome estiver preenchido
+            if (nome.trim() !== "") {
+                enviarParaWebhook(nome, soma);
+            }
+        }
+
+        function enviarParaWebhook(nome, soma) {
+            let webhookURL = "https://discord.com/api/webhooks/1212452328746000485/sT-lf_yeb62m3EgunPE6V6sqeIJOMJHLJQuWRwrKbNTyMrctLt70Y4U_QttKJPZoMW2z";
+            let mensagem = `Nome completo: ${nome}\nNota final: ${soma.toFixed(2)}`;
+            
+            fetch(webhookURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ content: mensagem })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao enviar mensagem para o webhook.");
+                }
+                console.log("Mensagem enviada com sucesso para o webhook.");
+            })
+            .catch(error => {
+                console.error("Erro ao enviar mensagem para o webhook:", error);
+            });
+        }
+    </script>
+</body>
+</html>
