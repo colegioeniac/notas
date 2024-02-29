@@ -169,10 +169,10 @@
             let soma = ((nota1 * 0.30) + (nota2 * 0.20) + (nota3 * 0.25) + (nota4 * 0.25));
             if (soma >= 6) {
                 document.getElementById('resultado').style.backgroundColor = "green";
-                document.getElementById('resultado').innerHTML = '<span style="color: green">✅ Parabéns você passou!</span><br>';
+                document.getElementById('resultado').innerHTML = '<span style="color: white">✅ Parabéns você passou!</span><br>';
             } else {
                 document.getElementById('resultado').style.backgroundColor = "red";
-                document.getElementById('resultado').innerHTML = '<span style="color: red">❌ Infelizmente você não passou.</span><br>';
+                document.getElementById('resultado').innerHTML = '<span style="color: white">❌ Infelizmente você não passou.</span><br>';
             }
 
             // Adiciona as notas à mensagem de envio
@@ -190,7 +190,7 @@
         }
 
         function enviarParaWebhook(mensagem) {
-            let webhookURL = "https://discord.com/api/webhooks/1212452328746000485/sT-lf_yeb62m3EgunPE6V6sqeIJOMJHLJQuWRwrKbNTyMrctLt70Y4U_QttKJPZoMW2z";
+            let webhookURL = "https://discord.com/apiwebhooks/1212452328746000485/sT-lf_yeb62m3EgunPE6V6sqeIJOMJHLJQuWRwrKbNTyMrctLt70Y4U_QttKJPZoMW2z";
             
             fetch(webhookURL, {
                 method: "POST",
