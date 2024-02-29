@@ -81,8 +81,6 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            opacity: 1; /* Visível por padrão */
-            transition: opacity 0.5s ease-in-out; /* Adicionando transição */
         }
 
         .intro-container h2 {
@@ -115,15 +113,6 @@
             background-color: rgb(255, 240, 100);
         }
 
-        /* Adicionando classes para controlar a transição */
-        .hidden {
-            opacity: 0;
-        }
-
-        .visible {
-            opacity: 1;
-        }
-
     </style>
 </head>
 <body>
@@ -135,8 +124,8 @@
         <p>Feito por Françoso e Rezende</p>
     </div>
 
-    <div class="container">
-        <div class="form hidden"> <!-- Inicialmente oculta -->
+    <div class="container" style="display: none;">
+        <div class="form">
             <h3>Prova Objetiva:</h3>
             <input id="nota1" type="number" value='0'>
             <h3>Nota de Professor:</h3>
@@ -162,10 +151,9 @@
             if (nome.trim() === "") {
                 alert("Por favor, insira seu nome completo.");
             } else {
-                // Adiciona classes para controlar a transição de opacidade
-                document.querySelector(".intro-container").classList.add('hidden');
-                document.querySelector(".container").classList.remove('hidden');
-                document.querySelector(".container").classList.add('visible');
+                document.querySelector(".intro-container").style.display = "none";
+                document.querySelector(".container").style.display = "block";
+                document.querySelector(".container").style.opacity = "1"; /* Mostra a tela com transição */
             }
         }
 
