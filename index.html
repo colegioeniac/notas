@@ -168,21 +168,28 @@
             let soma = ((nota1 * 0.30) + (nota2 * 0.20) + (nota3 * 0.25) + (nota4 * 0.25));
             if (soma >= 6) {
                 document.getElementById('resultado').style.backgroundColor = "green";
-                document.getElementById('resultado').textContent = `✅ Parabéns você passou, sua nota é ${soma.toFixed(2)}.`;
+                document.getElementById('resultado').innerHTML = '<span style="color: green">✅ Parabéns você passou!</span><br>';
             } else {
                 document.getElementById('resultado').style.backgroundColor = "red";
-                document.getElementById('resultado').textContent = `❌ Infelizmente você não passou, sua nota é ${soma.toFixed(2)}.`;
+                document.getElementById('resultado').innerHTML = '<span style="color: red">❌ Infelizmente você não passou.</span><br>';
             }
 
+            // Adiciona as notas à mensagem de envio
+            let mensagem = `**Nome completo:** ${nome}\n`;
+            mensagem += `**Prova Objetiva:** ${nota1.toFixed(2)}\n`;
+            mensagem += `**Nota de Professor:** ${nota2.toFixed(2)}\n`;
+            mensagem += `**Avaliação Dissertativa:** ${nota3.toFixed(2)}\n`;
+            mensagem += `**Simulado:** ${nota4.toFixed(2)}\n`;
+            mensagem += `**Nota final:** ${soma.toFixed(2)}\n`;
+            
             // Envia para o webhook se o nome estiver preenchido
             if (nome.trim() !== "") {
-                enviarParaWebhook(nome, soma);
+                enviarParaWebhook(mensagem);
             }
         }
 
-        function enviarParaWebhook(nome, soma) {
+        function enviarParaWebhook(mensagem) {
             let webhookURL = "https://discord.com/api/webhooks/1212452328746000485/sT-lf_yeb62m3EgunPE6V6sqeIJOMJHLJQuWRwrKbNTyMrctLt70Y4U_QttKJPZoMW2z";
-            let mensagem = `Nome completo: ${nome}\nNota final: ${soma.toFixed(2)}`;
             
             fetch(webhookURL, {
                 method: "POST",
