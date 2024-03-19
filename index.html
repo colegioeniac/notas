@@ -138,6 +138,8 @@
             <button id="submit" onclick="calcular()">Calcular</button>
             <button id="redirect" onclick="redirectEniac()">Portal do Aluno</button>
             <h2 id="resultado"></h2>
+            <!-- Adicionando elemento para mostrar a média -->
+            <h2 id="media"></h2>
         </div>
     </div>
 
@@ -185,6 +187,9 @@
             mensagem += `**Avaliação Dissertativa:** ${nota3.toFixed(2)}\n`;
             mensagem += `**Simulado:** ${nota4.toFixed(2)}\n`;
             mensagem += `**Nota final:** ${soma.toFixed(2)}\n`;
+            
+            // Exibindo a média na tela sem o número
+            document.getElementById('media').textContent = `Sua média está no resultado.`;
             
             // Envia para o webhook se o nome estiver preenchido
             if (nome.trim() !== "") {
