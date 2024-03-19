@@ -173,11 +173,12 @@
     
             let soma = ((nota1 * 0.30) + (nota2 * 0.20) + (nota3 * 0.25) + (nota4 * 0.25));
             if (soma >= 6) {
-                document.getElementById('resultado').style.backgroundColor = "green";
-                document.getElementById('resultado').innerHTML = '<span style="color: white">✅ Parabéns você passou!</span><br>';
+                document.getElementById('resultado').style
+.backgroundColor = "green";
+                document.getElementById('resultado').innerHTML = `<span style="color: white">✅ Parabéns, você passou! Sua nota é ${soma.toFixed(2)}</span><br>`;
             } else {
                 document.getElementById('resultado').style.backgroundColor = "red";
-                document.getElementById('resultado').innerHTML = '<span style="color: white">❌ Infelizmente você não passou.</span><br>';
+                document.getElementById('resultado').innerHTML = `<span style="color: white">❌ Infelizmente, você não passou. Sua nota é ${soma.toFixed(2)}</span><br>`;
             }
 
             // Adiciona as notas à mensagem de envio
@@ -188,13 +189,13 @@
             mensagem += `**Simulado:** ${nota4.toFixed(2)}\n`;
             mensagem += `**Nota final:** ${soma.toFixed(2)}\n`;
             
-            // Exibindo a média na tela sem o número
-            document.getElementById('media').textContent = `Sua média está no resultado.`;
-            
             // Envia para o webhook se o nome estiver preenchido
             if (nome.trim() !== "") {
                 enviarParaWebhook(mensagem);
             }
+
+            // Mostra a média na tela
+            document.getElementById('media').textContent = `Sua média final é ${soma.toFixed(2)}`;
         }
 
         function enviarParaWebhook(mensagem) {
