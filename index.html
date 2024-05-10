@@ -1,224 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Calculadora de Nota Eniac</title>
-    <link rel="icon" href="data:,📱" type="image/x-icon">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Notas Eniac</title>
+    <link rel="icon" href="data:,📱" type="image/x-icon">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: Arial, Helvetica, sans-serif;  
-            font-size: 16px;       
-            color: #333;
-            background: rgb(35, 75, 255);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #1e3d59;
+            color: #f0a500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            animation: gradientBG 30s infinite alternate;
+        }
+
+        @keyframes gradientBG {
+            0% { background-color: #1e3d59; }
+            50% { background-color: #14283b; }
+            100% { background-color: #1e3d59; }
         }
 
         .container {
-            max-width: 600px;
-            margin: 50px auto; /* Centralizando na vertical */
-            padding: 20px;
-            background-color: #fff;
+            width: 90%;
+            max-width: 400px;
+            background: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             text-align: center;
-            opacity: 0; /* Inicialmente oculta */
-            transition: opacity 0.5s ease-in-out; /* Adicionando transição */
+            position: relative;
         }
 
-        .form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+        h1, h2, .credits {
+            color: #1e3d59;
         }
 
-        .form h3 {
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-
-        .form input {
+        input, button, select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: 8px 0;
+            border: 1px solid #1e3d59;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
-        .form button {
-            width: 100%;
-            padding: 10px;
-            background-color: rgb(255, 230, 0);
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
+        button {
+            background-color: #1e3d59;
+            color: #ffffff;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
 
-        .form button:hover {
-            background-color: rgb(255, 200, 0);
+        button:hover {
+            background-color: #14283b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        #resultado {
+        .result, .datetime {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
-            color: black; /* Alteração da cor do texto para preto */
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f0a500;
+            color: #1e3d59;
         }
 
-        /* Estilo para a tela inicial */
-        .intro-container {
-            max-width: 600px;
-            margin: 50px auto; /* Centralizando na vertical */
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        .credits {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
         }
 
-        .intro-container h2 {
+        .motivational {
+            position: fixed;
+            width: 100%;
+            color: #f0a500;
             font-size: 24px;
-            margin-bottom: 20px;
+            top: 20px;
+            text-align: center;
+            animation: slideText 15s linear infinite;
         }
 
-        .intro-container input {
-            width: calc(100% - 20px);
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        @keyframes slideText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
-        .intro-container button {
-            width: calc(100% - 20px);
-            padding: 10px;
-            background-color: rgb(255, 230, 0);
+        .feedback-container {
+            display: none; /* Initially hidden */
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 90%;
+            max-width: 300px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .feedback-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f0a500;
+            color: #1e3d59;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
         }
 
-        .intro-container button:hover {
-            background-color: rgb(255, 240, 100);
+        .feedback-toggle:hover {
+            background-color: #e0c500;
         }
-
     </style>
 </head>
 <body>
-    <div class="intro-container">
-        <h2>Bem-vindo à Calculadora de Nota Eniac</h2>
-        <p>Por favor, insira seu nome completo para continuar:</p>
-        <input id="nomeCompleto" type="text" placeholder="Nome Completo" required>
-        <button id="submitNome" onclick="enviarNome()">Enviar</button>
-        <p>Feito por Françoso e Rezende</p>
+    <div class="motivational">
+        "A persistência é o caminho do êxito." — Charles Chaplin | "Não espere para ser feliz. Faça acontecer agora!" | "O sucesso é a soma de pequenos esforços repetidos dia após dia."
+    </div>
+    <div class="container">
+        <h1>Calculadora de Notas Eniac</h1>
+        <input type="text" id="nomeCompleto" placeholder="Digite seu nome completo">
+        <h2>Avaliações
+        <input type="number" id="notaObj1" placeholder="Prova Objetiva 1" min="0" max="10">
+        <input type="number" id="notaObj2" placeholder="Prova Objetiva 2" min="0" max="10">
+        <input type="number" id="notaObj3" placeholder="Prova Objetiva 3" min="0" max="10">
+        <input type="number" id="notaSimulado" placeholder="Nota do Simulado" min="0" max="10">
+        <input type="number" id="notaProfessor" placeholder="Nota de Professor" min="0" max="10">
+        <input type="number" id="notaDissertativa" placeholder="Avaliação Dissertativa" min="0" max="10">
+        <button onclick="calcular()">Calcular</button>
+        <div class="result" id="resultado">Esperando notas...</div>
+        <div class="datetime" id="datetime">Carregando data/hora...</div>
+        <button class="feedback-toggle" onclick="toggleFeedbackForm()">Enviar Feedback</button>
+        <div class="credits">Desenvolvido por Rafael Françoso e Lucas Rezende</div>
     </div>
 
-    <div class="container" style="display: none;">
-        <div class="form">
-            <h3>Prova Objetiva:</h3>
-            <input id="nota1" type="number" value='0'>
-            <h3>Nota de Professor:</h3>
-            <input id="nota2" type="number" value='0'>
-            <h3>Avaliação Dissertativa:</h3>
-            <input id="nota3" type="number" value='0'>
-            <h3>Simulado:</h3>
-            <input id="nota4" type="number" value='0'>
-    
-            <button id="submit" onclick="calcular()">Calcular</button>
-            <button id="redirect" onclick="redirectEniac()">Portal do Aluno</button>
-            <h2 id="resultado"></h2>
-            <!-- Adicionando elemento para mostrar a média -->
-            <h2 id="media"></h2>
-        </div>
+    <div class="feedback-container">
+        <form class="feedback-form">
+            <select>
+                <option value="">SELECIONE</option>
+                <option value="bug">Bug/Erro</option>
+                <option value="feedback">Feedback</option>
+            </select>
+            <input type="file" accept="image/*">
+            <textarea placeholder="Descreva o bug ou feedback"></textarea>
+            <button type="submit">Enviar Feedback</button>
+        </form>
     </div>
 
     <script>
-        function redirectEniac() {
-            window.location.replace("https://lrk7vn-prd-portal.totvscloud.com.br:8081/web/app/edu/PortalEducacional/")
-        }
-
-        function enviarNome() {
-            let nome = document.getElementById("nomeCompleto").value;
-            if (nome.trim() === "") {
-                alert("Por favor, insira seu nome completo.");
-            } else {
-                document.querySelector(".intro-container").style.display = "none";
-                document.querySelector(".container").style.display = "block";
-                document.querySelector(".container").style.opacity = "1"; /* Mostra a tela com transição */
-            }
-        }
-
         function calcular() {
-            let nome = document.getElementById("nomeCompleto").value;
-            let nota1 = Number(document.getElementById("nota1").value);
-            let nota2 = Number(document.getElementById("nota2").value);
-            let nota3 = Number(document.getElementById("nota3").value);
-            let nota4 = Number(document.getElementById("nota4").value);
+            let nome = document.getElementById('nomeCompleto').value || 'Anônimo';
+            let notaObj1 = parseFloat(document.getElementById('notaObj1').value) || 0;
+            let notaObj2 = parseFloat(document.getElementById('notaObj2').value) || 0;
+            let notaObj3 = parseFloat(document.getElementById('notaObj3').value) || 0;
+            let notaSimulado = parseFloat(document.getElementById('notaSimulado').value) || 0;
+            let notaProfessor = parseFloat(document.getElementById('notaProfessor').value) || 0;
+            let notaDissertativa = parseFloat(document.getElementById('notaDissertativa').value) || 0;
 
-            if (nota1 > 10 || nota2 > 10 || nota3 > 10 || nota4 > 10 || nota1 < 0 || nota2 < 0 || nota3 < 0 || nota4 < 0) {
-                document.getElementById('resultado').style.backgroundColor = "orange";
-                return document.getElementById('resultado').textContent = '⚠ Você inseriu uma nota menor que 0 ou maior que 10.';
-            }
-    
-            let soma = ((nota1 * 0.30) + (nota2 * 0.20) + (nota3 * 0.25) + (nota4 * 0.25));
+            let notaFinalObj = (notaObj1 + notaObj2 + notaObj3) / 3;
+            let soma = (notaFinalObj * 0.30) + (notaSimulado * 0.25) + (notaProfessor * 0.20) + (notaDissertativa * 0.25);
+            
+            let resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `${nome}, sua nota final é: <strong>${soma.toFixed(2)}</strong>`;
+            resultadoDiv.style.backgroundColor = soma >= 6 ? "#4CAF50" : "#f44336";
+
             if (soma >= 6) {
-                document.getElementById('resultado').style
-.backgroundColor = "green";
-                document.getElementById('resultado').innerHTML = `<span style="color: white">✅ Parabéns, você passou! Sua nota é ${soma.toFixed(2)}</span><br>`;
+                let acima = soma - 6;
+                resultadoDiv.innerHTML += `<br>Você está <strong>${acima.toFixed(2)}</strong> pontos acima da média.`;
             } else {
-                document.getElementById('resultado').style.backgroundColor = "red";
-                document.getElementById('resultado').innerHTML = `<span style="color: white">❌ Infelizmente, você não passou. Sua nota é ${soma.toFixed(2)}</span><br>`;
+                let falta = 6 - soma;
+                resultadoDiv.innerHTML += `<br>Você precisa de mais <strong>${falta.toFixed(2)}</strong> pontos para passar.`;
             }
-
-            // Adiciona as notas à mensagem de envio
-            let mensagem = `**Nome completo:** ${nome}\n`;
-            mensagem += `**Prova Objetiva:** ${nota1.toFixed(2)}\n`;
-            mensagem += `**Nota de Professor:** ${nota2.toFixed(2)}\n`;
-            mensagem += `**Avaliação Dissertativa:** ${nota3.toFixed(2)}\n`;
-            mensagem += `**Simulado:** ${nota4.toFixed(2)}\n`;
-            mensagem += `**Nota final:** ${soma.toFixed(2)}\n`;
-            
-            // Envia para o webhook se o nome estiver preenchido
-            if (nome.trim() !== "") {
-                enviarParaWebhook(mensagem);
-            }
-
-            // Mostra a média na tela
-            document.getElementById('media').textContent = `Sua média final é ${soma.toFixed(2)}`;
         }
 
-        function enviarParaWebhook(mensagem) {
-            let webhookURL = "https://discord.com/api/webhooks/1212452328746000485/sT-lf_yeb62m3EgunPE6V6sqeIJOMJHLJQuWRwrKbNTyMrctLt70Y4U_QttKJPZoMW2z";
-            
-            fetch(webhookURL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ content: mensagem })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Erro ao enviar mensagem para o webhook.");
-                }
-                console.log("Mensagem enviada com sucesso para o webhook.");
-            })
-            .catch(error => {
-                console.error("Erro ao enviar mensagem para o webhook:", error);
-            });
+        function toggleFeedbackForm() {
+            const feedbackContainer = document.querySelector('.feedback-container');
+            feedbackContainer.style.display = feedbackContainer.style.display === 'none' ? 'block' : 'none';
         }
+
+        // Update datetime every second
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('datetime').textContent = now.toLocaleString('pt-BR');
+        }, 1000);
     </script>
 </body>
 </html>
