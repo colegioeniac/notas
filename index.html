@@ -83,7 +83,7 @@
             position: fixed;
             width: 100%;
             color: #f0a500;
-            font-size: 18px; /* Smaller font size for smaller screens */
+            font-size: 18px;
             top: 20px;
             text-align: center;
             animation: slideText 15s linear infinite;
@@ -96,7 +96,7 @@
         }
 
         .feedback-container {
-            display: none; /* Initially hidden */
+            display: none;
             position: fixed;
             bottom: 10px;
             right: 10px;
@@ -140,30 +140,26 @@
         }
 
         @media (max-width: 768px) {
-            .motivational {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 10;
+            .container, input, button, select {
+                max-width: 90%; /* Adaptação para ocupar menos espaço */
+                padding: 8px;
             }
 
             .container {
-                margin-top: 50px; /* Slightly less margin */
-                padding: 15px; /* Less padding */
-                max-width: 350px; /* Smaller max-width */
+                padding: 10px; /* Menos padding */
+                margin-top: 50px;
+            }
+
+            h1, h2 {
+                font-size: 16px; /* Reduzir o tamanho das fontes */
             }
 
             input, button, select {
-                padding: 8px; /* Smaller padding */
+                font-size: 14px; /* Reduzir o tamanho das fontes */
             }
 
-            h1 {
-                font-size: 22px; /* Smaller font size */
-            }
-
-            h2 {
-                font-size: 18px; /* Smaller font size */
+            .result, .datetime {
+                font-size: 16px; /* Reduzir o tamanho das fontes */
             }
         }
     </style>
@@ -195,7 +191,7 @@
             <select>
                 <option value="">SELECIONE</option>
                 <option value="bug">Bug/Erro</option>
-                <option value="feedback">Feedback</option>
+                <option value="feedback">Feedback</option
             </select>
             <input type="file" accept="image/*">
             <textarea placeholder="Descreva o bug ou feedback"></textarea>
@@ -242,3 +238,4 @@
     </script>
 </body>
 </html>
+
