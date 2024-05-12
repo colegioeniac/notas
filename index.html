@@ -7,7 +7,7 @@
     <link rel="icon" href="data:,📱" type="image/x-icon">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif; /* Usando uma fonte mais neutra e profissional */
             margin: 0;
             background-color: #1e3d59;
             color: #f0a500;
@@ -28,10 +28,10 @@
 
         .container {
             width: 90%;
-            max-width: 400px;
+            max-width: 500px; /* Ajustado para um tamanho mais padrão */
             background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Borda mais arredondada para modernidade */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra mais suave e profunda */
             padding: 20px;
             text-align: center;
             z-index: 2;
@@ -39,44 +39,47 @@
 
         h1, h2, .credits {
             color: #1e3d59;
+            font-weight: 500; /* Tipografia mais leve */
         }
 
         input, button, select {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #1e3d59;
-            border-radius: 4px;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #1e3d59;
+            border-radius: 5px;
             box-sizing: border-box;
             transition: all 0.3s ease;
+            font-size: 16px; /* Fonte maior para melhor leitura */
         }
 
         button {
             background-color: #1e3d59;
             color: #ffffff;
             cursor: pointer;
+            font-weight: 500; /* Mais destaque */
         }
 
         button:hover {
             background-color: #14283b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
         .result, .datetime {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
-            padding: 10px;
-            border-radius: 4px;
+            padding: 12px;
+            border-radius: 5px;
             background-color: #f0a500;
             color: #1e3d59;
+            transition: background-color 0.5s;
         }
 
         .credits {
             margin-top: 20px;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: normal; /* Menos ênfase nos créditos */
         }
 
         .motivational {
@@ -84,35 +87,31 @@
             width: 100%;
             color: #f0a500;
             font-size: 18px;
-            top: 20px;
+            top: 10px;
             text-align: center;
-            animation: slideText 15s linear infinite;
             z-index: 3;
-        }
-
-        @keyframes slideText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            overflow: hidden;
+            height: 40px; /* Control the height to avoid content overlap */
+            font-style: italic; /* Estilo itálico para as frases */
         }
 
         .feedback-container {
             display: none;
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 90%;
-            max-width: 300px;
-            background: white;
-            border-radius: 8px;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: #ffffff;
+            border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             z-index: 1000;
         }
 
         .feedback-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             background-color: #f0a500;
             color: #1e3d59;
             border: none;
@@ -129,45 +128,39 @@
         }
 
         .close-btn {
-            display: block;
+            display:block;
             padding: 10px;
             margin: 10px 0;
             background-color: #f44336;
             color: white;
             border: none;
             border-radius: 4px;
-            cursor: pointer;
+            cursor:pointer;
         }
 
         @media (max-width: 768px) {
             .container, input, button, select {
-                max-width: 90%; /* Adaptação para ocupar menos espaço */
+                max-width: 100%; /* Adaptação para ocupar todo o espaço disponível */
                 padding: 8px;
             }
 
             .container {
-                padding: 10px; /* Menos padding */
-                margin-top: 50px;
+                padding: 15px; /* Mais padding para melhor toque */
+                margin-top: 60px; /* Mais espaço para a barra de frases */
             }
 
             h1, h2 {
-                font-size: 16px; /* Reduzir o tamanho das fontes */
+                font-size: 20px; /* Tamanho de fonte ajustado para visibilidade */
             }
 
             input, button, select {
-                font-size: 14px; /* Reduzir o tamanho das fontes */
-            }
-
-            .result, .datetime {
-                font-size: 16px; /* Reduzir o tamanho das fontes */
+                font-size: 14px; /* Ajuste para melhor manipulação em telas menores */
             }
         }
     </style>
 </head>
 <body>
-    <div class="motivational">
-        "A persistência é o caminho do êxito." — Charles Chaplin | "Não espere para ser feliz. Faça acontecer agora!" | "O sucesso é a soma de pequenos esforços repetidos dia após dia."
-    </div>
+    <div class="motivational"></div>
     <div class="container">
         <h1>Calculadora de Notas Eniac</h1>
         <input type="text" id="nomeCompleto" placeholder="Digite seu nome completo">
@@ -181,7 +174,7 @@
         <button onclick="calcular()">Calcular</button>
         <div class="result" id="resultado">Esperando cálculo...</div>
         <div class="datetime" id="datetime">Carregando data/hora...</div>
-        <button class="feedback-toggle" onclick="toggleFeedbackForm()">Enviar Feedback</button>
+        <button class="feedback-toggle" onclick="toggleFeedbackForm()">💬</button>
         <div class="credits">Desenvolvido por Rafael Françoso e Lucas Rezende</div>
     </div>
 
@@ -189,9 +182,9 @@
         <button class="close-btn" onclick="toggleFeedbackForm()">Fechar</button>
         <form class="feedback-form">
             <select>
-                <option value="">SELECIONE</option>
+                <option value="">SELECIONE</option
                 <option value="bug">Bug/Erro</option>
-                <option value="feedback">Feedback</option
+                <option value="feedback">Feedback</option>
             </select>
             <input type="file" accept="image/*">
             <textarea placeholder="Descreva o bug ou feedback"></textarea>
@@ -200,6 +193,39 @@
     </div>
 
     <script>
+        const phrases = [
+            "A persistência é o caminho do êxito. — Charles Chaplin",
+            "Não espere para ser feliz. Faça acontecer agora!",
+            "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+            "Seja a mudança que você deseja ver no mundo. — Mahatma Gandhi",
+            "Acredite em si próprio e chegará um dia em que os outros não terão outra escolha senão acreditar com você. — Cynthia Kersey",
+            "Não importa o quão devagar você vá, desde que você não pare. — Confúcio",
+            "Desistir é a única certeza de fracasso. — Steve Pavlina",
+            "Você não tem que ser grande para começar, mas tem que começar para ser grande. — Zig Ziglar",
+            "A motivação nos impulsiona a começar e o hábito nos permite continuar. — Jim Ryun",
+            "Só se pode alcançar um grande êxito quando nos mantemos fiéis a nós mesmos. — Friedrich Nietzsche"
+        ];
+
+        let index = 0;
+        const motivationalDiv = document.querySelector('.motivational');
+
+        function updatePhrase() {
+            if (motivationalDiv.children.length > 0) { // Check if there is already a phrase
+                motivationalDiv.children[0].remove(); // Remove the current phrase
+            }
+            const newPhrase = document.createElement('p');
+            newPhrase.textContent = phrases[index];
+            newPhrase.style.opacity = 1;
+            motivationalDiv.appendChild(newPhrase);
+            index = (index + 1) % phrases.length; // Loop back to the first phrase
+            setTimeout(() => {
+                newPhrase.style.opacity = 0; // Fade out the phrase smoothly
+            }, 8000); // 8 seconds until fade out starts
+        }
+
+        updatePhrase();
+        setInterval(updatePhrase, 10000); // Change phrase every 10 seconds
+
         function calcular() {
             let nome = document.getElementById('nomeCompleto').value || 'Anônimo';
             let notaObj1 = parseFloat(document.getElementById('notaObj1').value) || 0;
@@ -229,7 +255,7 @@
             const feedbackContainer = document.querySelector('.feedback-container');
             feedbackContainer.style.display = feedbackContainer.style.display === 'none' ? 'block' : 'none';
         }
-
+        
         // Update datetime every second
         setInterval(() => {
             const now = new Date();
@@ -238,4 +264,5 @@
     </script>
 </body>
 </html>
+
 
