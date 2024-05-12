@@ -14,9 +14,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
             animation: gradientBG 30s infinite alternate;
         }
 
@@ -34,7 +34,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
-            position: relative;
+            z-index: 2;
         }
 
         h1, h2, .credits {
@@ -83,10 +83,11 @@
             position: fixed;
             width: 100%;
             color: #f0a500;
-            font-size: 24px;
+            font-size: 18px; /* Smaller font size for smaller screens */
             top: 20px;
             text-align: center;
             animation: slideText 15s linear infinite;
+            z-index: 3;
         }
 
         @keyframes slideText {
@@ -126,6 +127,45 @@
         .feedback-toggle:hover {
             background-color: #e0c500;
         }
+
+        .close-btn {
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .motivational {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 10;
+            }
+
+            .container {
+                margin-top: 50px; /* Slightly less margin */
+                padding: 15px; /* Less padding */
+                max-width: 350px; /* Smaller max-width */
+            }
+
+            input, button, select {
+                padding: 8px; /* Smaller padding */
+            }
+
+            h1 {
+                font-size: 22px; /* Smaller font size */
+            }
+
+            h2 {
+                font-size: 18px; /* Smaller font size */
+            }
+        }
     </style>
 </head>
 <body>
@@ -135,21 +175,22 @@
     <div class="container">
         <h1>Calculadora de Notas Eniac</h1>
         <input type="text" id="nomeCompleto" placeholder="Digite seu nome completo">
-        <h2>Avaliações
-        <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1" min="0" max="10">
-        <input type="number" id="notaObj2" placeholder="Nota Prova Objetiva 2" min="0" max="10">
-        <input type="number" id="notaObj3" placeholder="Nota Prova Objetiva 3" min="0" max="10">
-        <input type="number" id="notaSimulado" placeholder="Nota Simulado" min="0" max="10">
-        <input type="number" id="notaProfessor" placeholder="Nota de Professor" min="0" max="10">
-        <input type="number" id="notaDissertativa" placeholder="Nota Avaliação Dissertativa" min="0" max="10">
+        <h2>Prova Objetiva</h2>
+        <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1 (10%)" min="0" max="10">
+        <input type="number" id="notaObj2" placeholder="Nota Prova Objetiva 2 (10%)" min="0" max="10">
+        <input type="number" id="notaObj3" placeholder="Nota Prova Objetiva 3 (10%)" min="0" max="10">
+        <input type="number" id="notaSimulado" placeholder="Nota do Simulado (25%)" min="0" max="10">
+        <input type="number" id="notaProfessor" placeholder="Nota de Professor (20%)" min="0" max="10">
+        <input type="number" id="notaDissertativa" placeholder="Avaliação Dissertativa (25%)" min="0" max="10">
         <button onclick="calcular()">Calcular</button>
-        <div class="result" id="resultado">Esperando notas...</div>
+        <div class="result" id="resultado">Esperando cálculo...</div>
         <div class="datetime" id="datetime">Carregando data/hora...</div>
         <button class="feedback-toggle" onclick="toggleFeedbackForm()">Enviar Feedback</button>
         <div class="credits">Desenvolvido por Rafael Françoso e Lucas Rezende</div>
     </div>
 
     <div class="feedback-container">
+        <button class="close-btn" onclick="toggleFeedbackForm()">Fechar</button>
         <form class="feedback-form">
             <select>
                 <option value="">SELECIONE</option>
