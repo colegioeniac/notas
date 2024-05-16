@@ -149,7 +149,13 @@
 <body>
     <div class="container">
         <h1>Calculadora de Notas Eniac</h1>
-        <input type="text" id="ano" placeholder="Selecione o seu Ano">
+        <label for="ano-escolar">Selecione o seu ano escolar:</label>
+        <select id="ano-escolar" name="ano-escolar">
+            <option value="9">9 Ano</option>
+            <option value="1">1 Ano EM</option>
+            <option value="2">2 Ano EM</option>
+            <option value="3">3 Ano EM</option>
+        </select>
         <h2>Avaliações</h2>
         <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1 (10%)" min="0" max="10">
         <input type="number" id="notaObj2" placeholder="Nota Prova Objetiva 2 (10%)" min="0" max="10">
