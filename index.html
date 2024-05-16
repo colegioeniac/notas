@@ -35,11 +35,6 @@ body {
     padding: 20px;
     text-align: center;
     z-index: 2;
-    filter: blur(5px);
-}
-
-.container.active {
-    filter: none;
 }
 
 h1, h2, .credits {
@@ -85,6 +80,12 @@ button:hover {
     margin-top: 20px;
     font-size: 14px;
     font-weight: normal;
+}
+
+.important-note {
+    font-size: 12px;
+    color: red;
+    margin-top: -10px;
 }
 
 .feedback-container {
@@ -153,8 +154,9 @@ button:hover {
 </head>
 <body>
 <div class="container">
+    <img src="Logo Eniac.webp" alt="Logo Eniac" style="width: 100px; margin-bottom: 10px;">
     <h1>Calculadora de Notas Eniac</h1>
-    <label for="ano-escolar">Selecione o seu ano escolar:</label>
+    <label for="ano-escolar">Selecionar Série:</label>
     <select id="ano-escolar" name="ano-escolar" onchange="mostrarCampos()">
         <option value="">Selecione...</option>
         <option value="9">9 Ano</option>
@@ -162,6 +164,7 @@ button:hover {
         <option value="2">2 Ano EM</option>
         <option value="3">3 Ano EM</option>
     </select>
+    <div class="important-note">*</div>
     <div id="camposNotas" style="display: none;">
         <h2>Avaliações</h2>
         <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1 (10%)" min="0" max="10">
@@ -181,11 +184,9 @@ button:hover {
 function mostrarCampos() {
     const anoEscolar = document.getElementById('ano-escolar').value;
     const camposNotas = document.getElementById('camposNotas');
-    const container = document.querySelector('.container');
 
     if (anoEscolar) {
         camposNotas.style.display = 'block';
-        container.classList.add('active');
 
         if (anoEscolar === '9') {
             document.getElementById('notaObj3').style.display = 'none';
@@ -195,10 +196,10 @@ function mostrarCampos() {
             document.getElementById('notaObj3').style.display = 'block';
             document.getElementById('notaObj1').placeholder = 'Nota Prova Objetiva 1 (10%)';
             document.getElementById('notaObj2').placeholder = 'Nota Prova Objetiva 2 (10%)';
+            document.getElementById('notaObj3').placeholder = 'Nota Prova Objetiva 3 (10%)';
         }
     } else {
         camposNotas.style.display = 'none';
-        container.classList.remove('active');
     }
 }
 
@@ -222,22 +223,4 @@ function calcular() {
     }
 
     const resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.innerHTML = `Sua nota final é: <strong>${soma.toFixed(2)}</strong>`;
-    resultadoDiv.style.backgroundColor = soma >= 6 ? "#4CAF50" : "#f44336";
-
-    if (soma >= 6) {
-        const acima = soma - 6;
-        resultadoDiv.innerHTML += `<br>Você está <strong>${acima.toFixed(2)}</strong> pontos acima da média.`;
-    } else {
-        const falta = 6 - soma;
-        resultadoDiv.innerHTML += `<br>Você precisa de mais <strong>${falta.toFixed(2)}</strong> pontos para passar.`;
-    }
-}
-
-setInterval(() => {
-    const now = new Date();
-    document.getElementById('datetime').textContent = now.toLocaleString('pt-BR');
-}, 1000);
-</script>
-</body>
-</html>
+    resultadoDiv.innerHTML = `Sua nota final é: <
