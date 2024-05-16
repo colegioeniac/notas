@@ -122,6 +122,7 @@ button:hover {
     <img src="Logo Eniac.webp" alt="Logo Eniac" style="width: 100px; margin-bottom: 10px;">
     <h1>Calculadora de Notas Eniac</h1>
     <label for="ano-escolar">Selecionar Série:</label>
+    <div class="important-note">* Selecionar o ano é obrigatório</div>
     <select id="ano-escolar" name="ano-escolar" onchange="mostrarCampos()">
         <option value="">Selecione...</option>
         <option value="9">9 Ano</option>
@@ -129,7 +130,6 @@ button:hover {
         <option value="2">2 Ano EM</option>
         <option value="3">3 Ano EM</option>
     </select>
-    <div class="important-note">* Selecionar o ano é obrigatório</div>
     <div id="camposNotas" style="display: none;">
         <h2>Avaliações</h2>
         <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1" min="0" max="10">
