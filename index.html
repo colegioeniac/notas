@@ -71,9 +71,17 @@ button:hover {
     font-weight: bold;
     padding: 12px;
     border-radius: 5px;
-    background-color: #f0a500;
-    color: #1e3d59;
     transition: background-color 0.5s;
+}
+
+.result.pass {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+
+.result.fail {
+    background-color: #f44336;
+    color: #ffffff;
 }
 
 .credits {
@@ -86,49 +94,6 @@ button:hover {
     font-size: 12px;
     color: red;
     margin-top: -10px;
-}
-
-.feedback-container {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.feedback-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #f0a500;
-    color: #1e3d59;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
-}
-
-.feedback-toggle:hover {
-    background-color: #e0c500;
-}
-
-.close-btn {
-    display: block;
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -164,12 +129,12 @@ button:hover {
         <option value="2">2 Ano EM</option>
         <option value="3">3 Ano EM</option>
     </select>
-    <div class="important-note">*</div>
+    <div class="important-note">* Selecionar o ano é obrigatório</div>
     <div id="camposNotas" style="display: none;">
         <h2>Avaliações</h2>
-        <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1 (10%)" min="0" max="10">
-        <input type="number" id="notaObj2" placeholder="Nota Prova Objetiva 2 (10%)" min="0" max="10">
-        <input type="number" id="notaObj3" placeholder="Nota Prova Objetiva 3 (10%)" min="0" max="10" style="display: none;">
+        <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1" min="0" max="10">
+        <input type="number" id="notaObj2" placeholder="Nota Prova Objetiva 2" min="0" max="10">
+        <input type="number" id="notaObj3" placeholder="Nota Prova Objetiva 3" min="0" max="10" style="display: none;">
         <input type="number" id="notaSimulado" placeholder="Nota do Simulado (25%)" min="0" max="10">
         <input type="number" id="notaProfessor" placeholder="Nota de Professor (20%)" min="0" max="10">
         <input type="number" id="notaDissertativa" placeholder="Avaliação Dissertativa (25%)" min="0" max="10">
@@ -215,12 +180,33 @@ function calcular() {
     let soma;
 
     if (anoEscolar === '9') {
-        const notaFinalObj = (notaObj1 + notaObj2) / 2;
-        soma = (notaFinalObj * 0.30) + (notaSimulado * 0.25) + (notaProfessor * 0.20) + (notaDissertativa * 0.25);
+        const notaFinalObj = (notaObj1 * 0.15) + (notaObj2 * 0.15); // 15% cada prova objetiva
+        soma = notaFinalObj + (notaSimulado * 0.25) + (notaProfessor * 0.20) + (notaDissertativa * 0.25);
     } else {
-        const notaFinalObj = (notaObj1 + notaObj2 + notaObj3) / 3;
-        soma = (notaFinalObj * 0.30) + (notaSimulado * 0.25) + (notaProfessor * 0.20) + (notaDissertativa * 0.25);
+        const notaFinalObj = (notaObj1 * 0.10) + (notaObj2 * 0.10) + (notaObj3 * 0.10); // 10% cada prova objetiva
+        soma = notaFinalObj + (notaSimulado * 0.25) + (notaProfessor * 0.20) + (notaDissertativa * 0.25);
     }
 
     const resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.innerHTML = `Sua nota final é: <
+    resultadoDiv.innerHTML = `Sua nota final é: <strong>${soma.toFixed(2)}</strong>`;
+
+    if (soma >= 6) {
+        const acima = soma - 6;
+        resultadoDiv.classList.add('pass');
+        resultadoDiv.classList.remove('fail');
+        resultadoDiv.innerHTML += `<br>Parabéns! Você passou.<br>Você está <strong>${acima.toFixed(2)}</strong> pontos acima da média.`;
+    } else {
+        const falta = 6 - soma;
+        resultadoDiv.classList.add('fail');
+        resultadoDiv.classList.remove('pass');
+        resultadoDiv.innerHTML += `<br>Infelizmente, você não passou.<br>Você precisa de mais <strong>${falta.toFixed(2)}</strong> pontos para passar.`;
+    }
+}
+
+setInterval(() => {
+    const now = new Date();
+    document.getElementById('datetime').textContent = now.toLocaleString('pt-BR');
+}, 1000);
+</script>
+</body>
+</html>
