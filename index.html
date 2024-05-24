@@ -2,163 +2,163 @@
 <html lang="pt-br">
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LB6YF23R94"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LB6YF23R94"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        gtag('config', 'G-LB6YF23R94');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Notas - Eniac</title>
-    <link rel="icon" href="data:,📱" type="image/x-icon">
-    <link rel="shortcut icon" href="https://www.eniac.edu.br/hubfs/Favicon-Eniac.png">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            background-color: #1e3d59;
-            color: #f0a500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-            animation: gradientBG 30s infinite alternate;
-        }
+  gtag('config', 'G-LB6YF23R94');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Notas - Eniac</title>
+<link rel="icon" href="data:,📱" type="image/x-icon">
+<link rel="shortcut icon" href="https://www.eniac.edu.br/hubfs/Favicon-Eniac.png">
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #1e3d59;
+    color: #f0a500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    animation: gradientBG 30s infinite alternate;
+}
 
-        @keyframes gradientBG {
-            0% { background-color: #1e3d59; }
-            50% { background-color: #14283b; }
-            100% { background-color: #1e3d59; }
-        }
+@keyframes gradientBG {
+    0% { background-color: #1e3d59; }
+    50% { background-color: #14283b; }
+    100% { background-color: #1e3d59; }
+}
 
-        .container {
-            width: 90%;
-            max-width: 500px;
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-            padding: 20px;
-            text-align: center;
-            z-index: 2;
-            margin: 60px;
-        }
+.container {
+    width: 90%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+    margin: 60px;
+}
 
-        h1 {
-            color: #1e3d59;
-            font-weight: 700;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+h1 {
+    color: #1e3d59;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
 
-        h2 {
-            color: #1e3d59;
-            font-weight: 500;
-            font-size: 20px;
-            margin-top: 20px;
-        }
+h2 {
+    color: #1e3d59;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 20px;
+}
 
-        label, .important-note {
-            color: #1e3d59;
-            font-weight: 500;
-            font-size: 18px;
-        }
+label, .important-note {
+    color: #1e3d59;
+    font-weight: 500;
+    font-size: 18px;
+}
 
-        input, button, select {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #1e3d59;
-            border-radius: 5px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
+input, button, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #1e3d59;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
 
-        button {
-            background-color: #1e3d59;
-            color: #ffffff;
-            cursor: pointer;
-            font-weight: 500;
-            margin-top: 10px;
-        }
+button {
+    background-color: #1e3d59;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    margin-top: 10px;
+}
 
-        button:hover {
-            background-color: #14283b;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
+button:hover {
+    background-color: #14283b;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
 
-        button.clear {
-            background-color: #f44336;
-        }
+button.clear {
+    background-color: #f44336;
+}
 
-        button.clear:hover {
-            background-color: #d32f2f;
-        }
+button.clear:hover {
+    background-color: #d32f2f;
+}
 
-        .result, .datetime {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 12px;
-            border-radius: 5px;
-            background-color: #f0a500;
-            color: #1e3d59;
-            transition: background-color 0.5s;
-        }
+.result, .datetime {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #f0a500;
+    color: #1e3d59;
+    transition: background-color 0.5s;
+}
 
-        .result.pass {
-            background-color: #4CAF50;
-            color: #ffffff;
-        }
+.result.pass {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
 
-        .result.fail {
-            background-color: #f44336;
-            color: #ffffff;
-        }
+.result.fail {
+    background-color: #f44336;
+    color: #ffffff;
+}
 
-        .credits {
-            margin-top: 20px;
-            font-size: 14px;
-            font-weight: normal;
-            color: #1e3d59;
-        }
+.credits {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #1e3d59;
+}
 
-        .important-note {
-            font-size: 14px;
-            color: red;
-            margin-top: -5px;
-        }
+.important-note {
+    font-size: 14px;
+    color: red;
+    margin-top: -5px;
+}
 
-        @media (max-width: 768px) {
-            .container, input, button, select {
-                max-width: 100%;
-                padding: 8px;
-            }
+@media (max-width: 768px) {
+    .container, input, button, select {
+        max-width: 100%;
+        padding: 8px;
+    }
 
-            .container {
-                padding: 15px;
-                margin-top: 60px;
-                margin: 5px
-            }
+    .container {
+        padding: 15px;
+        margin-top: 60px;
+        margin: 5px
+    }
 
-            h1 {
-                font-size: 20px;
-            }
+    h1 {
+        font-size: 20px;
+    }
 
-            h2, label, .important-note {
-                font-size: 16px;
-            }
+    h2, label, .important-note {
+        font-size: 16px;
+    }
 
-            input, button, select {
-                font-size: 14px;
-            }
-        }
-    </style>
+    input, button, select {
+        font-size: 14px;
+    }
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -212,81 +212,56 @@ function mostrarCampos() {
     }
 }
 
-function validarEntrada(valor, id) {
-    if (isNaN(valor) || valor < 0 || valor > 10) {
-        document.getElementById(id).style.backgroundColor = 'yellow';
-        return false;
-    }
-    document.getElementById(id).style.backgroundColor = 'white';
-    return true;
-}
-
 function calcular() {
     const anoEscolar = document.getElementById('ano-escolar').value;
-    const notas = [
-        { id: 'notaObj1', value: document.getElementById('notaObj1').value, nome: 'Nota Prova Objetiva 1' },
-        { id: 'notaObj2', value: document.getElementById('notaObj2').value, nome: 'Nota Prova Objetiva 2' },
-        { id: 'notaObj3', value: document.getElementById('notaObj3').value
-         , nome: 'Nota Prova Objetiva 3' },
-        { id: 'notaSimulado', value: document.getElementById('notaSimulado').value, nome: 'Nota do Simulado' },
-        { id: 'notaProfessor', value: document.getElementById('notaProfessor').value, nome: 'Nota de Professor' },
-        { id: 'notaDissertativa', value: document.getElementById('notaDissertativa').value, nome: 'Avaliação Dissertativa' },
-    ];
+    const notaObj1 = parseFloat(document.getElementById('notaObj1').value) || 0;
+    const notaObj2 = parseFloat(document.getElementById('notaObj2').value) || 0;
+    const notaObj3 = parseFloat(document.getElementById('notaObj3').value) || 0;
+    const notaSimulado = parseFloat(document.getElementById('notaSimulado').value) || 0;
+    const notaProfessor = parseFloat(document.getElementById('notaProfessor').value) || 0;
+    const notaDissertativa = parseFloat(document.getElementById('notaDissertativa').value) || 0;
 
-    let valid = true;
-    let mensagemErro = '';
-    notas.forEach(nota => {
-        if (!validarEntrada(nota.value, nota.id)) {
-            valid = false;
-            mensagemErro += `No campo ${nota.nome}, foi inserido um valor inválido. Por favor, altere e coloque somente números entre 0 e 10.<br>`;
-        }
-    });
+    let soma;
 
-    if (!valid) {
-        document.getElementById('resultado').innerHTML = mensagemErro;
-        return;
+    if (anoEscolar === '9') {
+        const notaFinalObj = (notaObj1 * 0.15) + (notaObj2 * 0.15); // 15% cada prova objetiva
+        soma = notaFinalObj + (notaSimulado * 0.25) + (notaProfessor * 0.20) + (notaDissertativa * 0.25);
+    } else {
+        const notaFinalObj = (notaObj1 * 0.10) + (notaObj2 * 0.10) + (notaObj3 * 0.10); // 10% cada prova objetiva
+        soma = notaFinalObj + (notaSimulado * 0.25) + (notaProfessor * 0.20) + (notaDissertativa * 0.25);
     }
 
-    const nota1 = parseFloat(notas[0].value);
-    const nota2 = parseFloat(notas[1].value);
-    const nota3 = anoEscolar !== '9' ? parseFloat(notas[2].value) : 0;
-    const notaSimulado = parseFloat(notas[3].value);
-    const notaProfessor = parseFloat(notas[4].value);
-    const notaDissertativa = parseFloat(notas[5].value);
+    const resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.innerHTML = `Sua nota final é: <strong>${soma.toFixed(2)}</strong>`;
 
-    const pesoObj = anoEscolar === '9' ? 0.15 : 0.10;
-    const mediaObjetivas = anoEscolar === '9' 
-        ? (nota1 + nota2) * pesoObj
-        : (nota1 + nota2 + nota3) * pesoObj;
-
-    const media = mediaObjetivas + notaSimulado * 0.25 + notaProfessor * 0.20 + notaDissertativa * 0.25;
-
-    const resultado = document.getElementById('resultado');
-    resultado.innerHTML = `Média Final: ${media.toFixed(2)}`;
-    resultado.className = 'result ' + (media >= 6 ? 'pass' : 'fail');
+    if (soma >= 6) {
+        const acima = soma - 6;
+        resultadoDiv.classList.add('pass');
+        resultadoDiv.classList.remove('fail');
+        resultadoDiv.innerHTML += `<br>Parabéns! Você passou.<br>Você está <strong>${acima.toFixed(2)}</strong> pontos acima da média.`;
+    } else {
+        const falta = 6 - soma;
+        resultadoDiv.classList.add('fail');
+        resultadoDiv.classList.remove('pass');
+        resultadoDiv.innerHTML += `<br>Infelizmente, você não passou.<br>Você precisa de mais <strong>${falta.toFixed(2)}</strong> pontos para passar.`;
+    }
 }
 
 function limparCampos() {
-    document.getElementById('ano-escolar').value = '';
-    document.getElementById('camposNotas').style.display = 'none';
-
-    ['notaObj1', 'notaObj2', 'notaObj3', 'notaSimulado', 'notaProfessor', 'notaDissertativa'].forEach(id => {
-        document.getElementById(id).value = '';
-        document.getElementById(id).style.backgroundColor = 'white';
-    });
-
-    document.getElementById('resultado').innerHTML = 'Esperando notas...';
-    document.getElementById('resultado').className = 'result';
+    document.getElementById('notaObj1').value = '';
+    document.getElementById('notaObj2').value = '';
+    document.getElementById('notaObj3').value = '';
+    document.getElementById('notaSimulado').value = '';
+    document.getElementById('notaProfessor').value = '';
+    document.getElementById('notaDissertativa').value = '';
+    document.getElementById('resultado').innerHTML = 'Esperando cálculo...';
+    document.getElementById('resultado').classList.remove('pass', 'fail');
 }
 
-function atualizarDataHora() {
-    const agora = new Date();
-    const datetime = document.getElementById('datetime');
-    datetime.innerHTML = `Data e Hora: ${agora.toLocaleDateString()} ${agora.toLocaleTimeString()}`;
-}
-
-setInterval(atualizarDataHora, 1000);
+setInterval(() => {
+    const now = new Date();
+    document.getElementById('datetime').textContent = now.toLocaleString('pt-BR');
+}, 1000);
 </script>
 </body>
 </html>
-```
