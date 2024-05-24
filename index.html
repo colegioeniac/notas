@@ -45,6 +45,7 @@ body {
     padding: 20px;
     text-align: center;
     z-index: 2;
+    margin: 60px;
 }
 
 h1 {
@@ -173,11 +174,17 @@ button.clear:hover {
     <div class="important-note">* Selecionar o ano escolar é obrigatório</div>
     <div id="camposNotas" style="display: none;">
         <h2>Avaliações</h2>
+        <p>Objetiva 1:</p>
         <input type="number" id="notaObj1" placeholder="Nota Prova Objetiva 1" min="0" max="10">
+        <p>Objetiva 2:</p>
         <input type="number" id="notaObj2" placeholder="Nota Prova Objetiva 2" min="0" max="10">
+        <p id="title-obj3">Objetiva 3:</p>
         <input type="number" id="notaObj3" placeholder="Nota Prova Objetiva 3" min="0" max="10" style="display: none;">
+        <p>Simulado:</p>
         <input type="number" id="notaSimulado" placeholder="Nota do Simulado (25%)" min="0" max="10">
+        <p>Nota de Professor:</p>
         <input type="number" id="notaProfessor" placeholder="Nota de Professor (20%)" min="0" max="10">
+        <p>Dissertativa:</p>
         <input type="number" id="notaDissertativa" placeholder="Avaliação Dissertativa (25%)" min="0" max="10">
         <button onclick="calcular()">Calcular</button>
         <button class="clear" onclick="limparCampos()">Limpar</button>
@@ -197,10 +204,12 @@ function mostrarCampos() {
 
         if (anoEscolar === '9') {
             document.getElementById('notaObj3').style.display = 'none';
+            document.getElementById('title-obj3').style.display = 'none';
             document.getElementById('notaObj1').placeholder = 'Nota Prova Objetiva 1 (15%)';
             document.getElementById('notaObj2').placeholder = 'Nota Prova Objetiva 2 (15%)';
         } else {
             document.getElementById('notaObj3').style.display = 'block';
+            document.getElementById('title-obj3').style.display = 'block';
             document.getElementById('notaObj1').placeholder = 'Nota Prova Objetiva 1 (10%)';
             document.getElementById('notaObj2').placeholder = 'Nota Prova Objetiva 2 (10%)';
             document.getElementById('notaObj3').placeholder = 'Nota Prova Objetiva 3 (10%)';
